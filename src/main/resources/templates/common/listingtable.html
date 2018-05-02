@@ -7,24 +7,14 @@
             <th scope="col">Thema</th>
         </tr>
     </thead>
-    <tbody>
-        <tr id="row1">
-            <td scope="row">18:00 Uhr</td>
-            <td>21</td>
-            <td>BlaVerein</td>
-            <td>Erde</td>
-        </tr>
-        <tr id="row2">
-            <td scope="row">18:15 Uhr</td>
-            <td>22</td>
-            <td>Besserer BlaVerein</td>
-            <td>Wasser</td>
-        </tr>
-        <tr id="row3">
-            <td scope="row">18:30 Uhr</td>
-            <td>23</td>
-            <td>Krasser Verein</td>
-            <td>Feuer</td>
-        </tr>
+    <tbody th:if="${#lists.size(clubs)!=0}">
+        <th:block th:each="club : ${clubs}">
+            <tr th:id="${club.id}">
+                <td scope="row" th:text="${club.date}"></td>
+                <td th:text="${club.number}"></td>
+                <td th:text="${club.name}"></td>
+                <td th:text="${club.topic}"></td>
+            </tr>
+        </th:block>
     </tbody>
 </table>
