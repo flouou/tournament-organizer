@@ -11,8 +11,11 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private ClubService clubService;
+    private final ClubService clubService;
+
+    public IndexController(ClubService clubService) {
+        this.clubService = clubService;
+    }
 
     @GetMapping("/")
     public String index(Map<String, Object> model){
