@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClubService {
-    @Autowired
-    private ClubRepository clubRepository;
+    private final ClubRepository clubRepository;
+
+    public ClubService(ClubRepository clubRepository) {
+        this.clubRepository = clubRepository;
+    }
 
     public Iterable<ClubEntity> create(String name, String date, int number, String topic, int order){
         ClubEntity clubEntity = new ClubEntity();
