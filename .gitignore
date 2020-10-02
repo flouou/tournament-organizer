@@ -1,2 +1,4 @@
 target/
 tournamend.db
+.idea
+*.iml
