@@ -1,19 +1,16 @@
 package com.bindschaedel.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@JsonIgnoreProperties( {"groups"})
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Club {
 
     @Id
@@ -22,4 +19,8 @@ public class Club {
     private Long id;
     private String name;
     private String city;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "club")
+    @Setter
+    private Set<ClubGroup> groups = new HashSet<>();
 }
