@@ -81,4 +81,11 @@ public class ClubServiceTest {
         invalidClub.setName("");
         assertThatExceptionOfType(TransactionSystemException.class).isThrownBy(() -> clubService.save(invalidClub));
     }
+
+    @Test
+    void canRemoveClub() {
+        Club savedClub = clubService.save(club);
+        clubService.remove(savedClub.getId());
+        assertThat(clubService.count()).isZero();
+    }
 }
