@@ -1,6 +1,5 @@
 package com.bindschaedel.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,14 +15,10 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@JsonIgnoreProperties({ "groups" })
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
-public class Club extends BaseEntity {
+public class ShowRating extends BaseEntity {
 
-    private String name;
-    private String city;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "showRating")
     @Setter
-    private Set<ClubGroup> groups = new HashSet<>();
+    private Set<Rating> ratings = new HashSet<>();
 }

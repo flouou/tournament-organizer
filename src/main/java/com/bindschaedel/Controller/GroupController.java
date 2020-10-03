@@ -21,8 +21,7 @@ public class GroupController {
     public ResponseEntity<Iterable<ClubGroup>> getAllGroups() {
         return new ResponseEntity<>(groupService.getAll(), HttpStatus.OK);
     }
-
-    //TODO Just won't work
+    
     @GetMapping("/groups/{groupId}")
     public ResponseEntity<ClubGroup> getGroupById(@PathVariable(value = "groupId") String groupId) {
         ClubGroup group = groupService.findById(Long.parseLong(groupId));

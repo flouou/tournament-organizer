@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface GroupRepository extends JpaRepository<ClubGroup, Long> {
-
-    public List<ClubGroup> findByClubId(Long id);
+    List<ClubGroup> findByClubId(Long id);
 }

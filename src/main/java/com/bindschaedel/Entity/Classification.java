@@ -2,23 +2,17 @@ package com.bindschaedel.Entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Classification {
+public class Classification extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Getter
-    private Long id;
     private String name;
     private String description;
 }
