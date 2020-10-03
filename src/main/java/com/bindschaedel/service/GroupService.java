@@ -28,4 +28,9 @@ public class GroupService {
     public List<ClubGroup> findGroupByClubId(Long id) {
         return groupRepository.findByClubId(id);
     }
+
+    public ClubGroup save(ClubGroup group) {
+        return groupRepository.save(group);
+    }
+
 }
