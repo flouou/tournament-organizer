@@ -29,9 +29,12 @@ public class ClubService {
         return clubRepository.findByNameContainingIgnoreCase(name);
     }
 
-    public void save(Club club) {
+    public Club save(Club club) {
         if (club != null) {
-            clubRepository.save(club);
+            return clubRepository.save(club);
+        }
+        else {
+            return null;
         }
     }
 

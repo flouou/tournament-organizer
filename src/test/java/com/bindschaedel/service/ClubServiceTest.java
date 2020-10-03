@@ -2,6 +2,7 @@ package com.bindschaedel.service;
 
 import com.bindschaedel.annotations.IntegrationTest;
 import com.bindschaedel.entity.Club;
+import com.google.common.collect.Iterables;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,24 @@ public class ClubServiceTest {
 
     private void prepareClub() {
         club = new Club("Mein Verein", "Minze");
+    }
+
+    @Test
+    void canSearchAllClubs() {
+        assertThat(clubService.getAll()).isEmpty();
+    }
+
+    @Test
+    void canSearchAllClubsWithResult() {
+        clubService.save(club);
+        assertThat(Iterables.size(clubService.getAll())).isOne();
+    }
+
+    @Test
+    void canFindById() {
+        Club savedClub = clubService.save(club);
+        assertThat(clubService.findById(savedClub.getId())).isNotNull();
+        assertThat(clubService.findById(savedClub.getId()).getName()).isEqualTo(club.getName());
     }
 
     @Test
