@@ -1,7 +1,7 @@
-package com.bindschaedel.Controller;
+package com.bindschaedel.controller;
 
-import com.bindschaedel.Entity.ClubGroup;
-import com.bindschaedel.Service.GroupService;
+import com.bindschaedel.entity.ClubGroup;
+import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class GroupController {
     public ResponseEntity<Iterable<ClubGroup>> getAllGroups() {
         return new ResponseEntity<>(groupService.getAll(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/groups/{groupId}")
     public ResponseEntity<ClubGroup> getGroupById(@PathVariable(value = "groupId") String groupId) {
         ClubGroup group = groupService.findById(Long.parseLong(groupId));

@@ -1,12 +1,11 @@
-package com.bindschaedel.Service;
+package com.bindschaedel.service;
 
-import com.bindschaedel.Entity.ClubGroup;
-import com.bindschaedel.Repository.GroupRepository;
+import com.bindschaedel.entity.ClubGroup;
+import com.bindschaedel.repository.GroupRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class GroupService {

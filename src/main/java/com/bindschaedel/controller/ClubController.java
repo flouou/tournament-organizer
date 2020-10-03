@@ -1,9 +1,9 @@
-package com.bindschaedel.Controller;
+package com.bindschaedel.controller;
 
-import com.bindschaedel.Entity.Club;
-import com.bindschaedel.Entity.ClubGroup;
-import com.bindschaedel.Service.ClubService;
-import com.bindschaedel.Service.GroupService;
+import com.bindschaedel.entity.Club;
+import com.bindschaedel.entity.ClubGroup;
+import com.bindschaedel.service.ClubService;
+import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class ClubController {
     public ResponseEntity<Iterable<Club>> getAllClubs() {
         return new ResponseEntity<>(clubService.getAll(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/clubs/{clubId}")
     public ResponseEntity<Club> getSingleClub(@PathVariable(value = "clubId") String clubId) {
 

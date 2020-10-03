@@ -1,4 +1,4 @@
-package com.bindschaedel.Entity;
+package com.bindschaedel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
@@ -22,6 +22,11 @@ public class Club extends BaseEntity {
 
     private String name;
     private String city;
+    
+    public Club(String name, String city) {
+        this.name = name;
+        this.city = city;
+    }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
     @Setter

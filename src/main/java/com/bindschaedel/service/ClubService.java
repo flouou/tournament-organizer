@@ -1,17 +1,14 @@
-package com.bindschaedel.Service;
+package com.bindschaedel.service;
 
-import com.bindschaedel.Entity.Club;
-import com.bindschaedel.Repository.ClubRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bindschaedel.entity.Club;
+import com.bindschaedel.repository.ClubRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 @Service
 public class ClubService {
 
-    @Autowired
     private final ClubRepository clubRepository;
 
     public ClubService(ClubRepository clubRepository) {
@@ -25,5 +22,15 @@ public class ClubService {
     public Club findById(Long id) {
         Optional<Club> clubOptional = clubRepository.findById(id);
         return clubOptional.orElseGet(Club::new);
+    }
+
+    public void save(Club club) {
+        if (club != null) {
+            clubRepository.save(club);
+        }
+    }
+
+    public long count() {
+        return clubRepository.count();
     }
 }

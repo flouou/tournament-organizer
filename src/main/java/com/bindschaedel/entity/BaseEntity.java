@@ -1,4 +1,4 @@
-package com.bindschaedel.Entity;
+package com.bindschaedel.entity;
 
 import lombok.Getter;
 

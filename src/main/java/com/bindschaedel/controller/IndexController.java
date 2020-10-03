@@ -1,4 +1,4 @@
-package com.bindschaedel.Controller;
+package com.bindschaedel.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
