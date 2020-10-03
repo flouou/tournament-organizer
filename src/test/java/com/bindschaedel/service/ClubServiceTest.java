@@ -3,6 +3,7 @@ package com.bindschaedel.service;
 import com.bindschaedel.annotations.IntegrationTest;
 import com.bindschaedel.entity.Club;
 import com.google.common.collect.Iterables;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,14 @@ public class ClubServiceTest {
         club = new Club("Mein Verein", "Minze");
     }
 
+    @AfterEach
+    public void clean() {
+        clubService.removeAll();
+    }
+
     @Test
     void canSearchAllClubs() {
-        assertThat(clubService.getAll()).isEmpty();
+        assertThat(Iterables.size(clubService.getAll())).isZero();
     }
 
     @Test

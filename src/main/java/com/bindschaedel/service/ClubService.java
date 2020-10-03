@@ -41,4 +41,12 @@ public class ClubService {
     public long count() {
         return clubRepository.count();
     }
+
+    public void remove(Long id) {
+        clubRepository.deleteById(id);
+    }
+
+    public void removeAll() {
+        clubRepository.deleteAll();
+    }
 }
