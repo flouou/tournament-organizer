@@ -30,7 +30,12 @@ public class GroupService {
     }
 
     public ClubGroup save(ClubGroup group) {
-        return groupRepository.save(group);
+        if (group != null) {
+            return groupRepository.save(group);
+        }
+        else {
+            return null;
+        }
     }
 
     public void removeAll() {

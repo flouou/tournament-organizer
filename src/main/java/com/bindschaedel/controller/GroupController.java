@@ -36,20 +36,14 @@ public class GroupController {
 
     @PostMapping("/groups")
     public ResponseEntity<ClubGroup> createGroup(@RequestBody ClubGroup group) {
-        Club clubObject = null;
-        if (group.getClub() != null) {
-            clubObject = clubService.findById(group.getClub().getId());
+        if (group != null && group.getClub() != null) {
+            Club clubObject = clubService.findById(group.getClub().getId());
+            group.setClub(clubObject);
         }
-        group.setClub(clubObject);
+        
         ClubGroup savedGroup = groupService.save(group);
 
-        HttpStatus status;
-        if (savedGroup != null) {
-            status = HttpStatus.CREATED;
-        }
-        else {
-            status = HttpStatus.CONFLICT;
-        }
+        HttpStatus status = savedGroup == null ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return new ResponseEntity<>(savedGroup, status);
     }
 }

@@ -1,8 +1,11 @@
 package com.bindschaedel.controller;
 
+import com.bindschaedel.entity.Club;
 import com.bindschaedel.entity.ClubGroup;
+import com.bindschaedel.service.ClubService;
 import com.bindschaedel.service.GroupService;
 import com.google.common.collect.Iterables;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +26,14 @@ public class GroupControllerTest {
     GroupController groupController;
 
     @Mock GroupService groupService;
+    @Mock ClubService  clubService;
+
+    Club club;
+
+    @BeforeEach
+    public void setup() {
+        club = new Club("Test Club", "Test City");
+    }
 
     @Test
     public void testGetSingleGroup() {
@@ -56,10 +67,20 @@ public class GroupControllerTest {
     public void testCreateGroup() {
         ClubGroup group = new ClubGroup();
         group.setName("Test Group");
+        group.setClub(club);
         when(groupService.save(any(ClubGroup.class))).thenReturn(group);
         ResponseEntity<ClubGroup> responseEntity = groupController.createGroup(group);
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
         assertThat(responseEntity.getBody().getName()).isEqualTo(group.getName());
+    }
+
+    @Test
+    public void testCreateNullGroup() {
+        when(groupService.save(null)).thenReturn(null);
+        ResponseEntity<ClubGroup> responseEntity = groupController.createGroup(null);
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(409);
+        assertThat(responseEntity.getBody()).isNull();
     }
 }

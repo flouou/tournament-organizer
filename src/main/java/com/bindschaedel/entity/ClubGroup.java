@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
@@ -20,6 +22,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ClubGroup extends BaseEntity {
 
+    @NotNull
+    @NotBlank
     private String        name;
     private String        age;
     private LocalDateTime time;
@@ -33,4 +37,8 @@ public class ClubGroup extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
     @Setter
     private ShowRating showRating = new ShowRating();
+
+    public ClubGroup(String name) {
+        this.name = name;
+    }
 }
