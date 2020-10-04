@@ -88,4 +88,10 @@ public class ClubServiceTest {
         clubService.remove(savedClub.getId());
         assertThat(clubService.count()).isZero();
     }
+
+    @Test
+    void canSearchByName() {
+        clubService.save(club);
+        assertThat(clubService.findByName("verein").size()).isOne();
+    }
 }

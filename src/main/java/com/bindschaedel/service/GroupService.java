@@ -33,4 +33,8 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
+    public void removeAll() {
+        groupRepository.deleteAll();
+    }
+
 }
