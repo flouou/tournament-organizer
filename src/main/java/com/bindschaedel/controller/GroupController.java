@@ -25,6 +25,6 @@ public class GroupController {
     @GetMapping("/groups/{groupId}")
     public ResponseEntity<ClubGroup> getGroupById(@PathVariable(value = "groupId") String groupId) {
         ClubGroup group = groupService.findById(Long.parseLong(groupId));
-        return new ResponseEntity<>(group, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(group, HttpStatus.OK);
     }
 }
