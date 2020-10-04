@@ -22,7 +22,7 @@ public class GroupService {
 
     public ClubGroup findById(Long id) {
         Optional<ClubGroup> groupOptional = groupRepository.findById(id);
-        return groupOptional.orElseGet(ClubGroup::new);
+        return groupOptional.orElse(null);
     }
 
     public List<ClubGroup> findGroupByClubId(Long id) {

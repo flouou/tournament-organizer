@@ -22,7 +22,7 @@ public class ClubService {
 
     public Club findById(Long id) {
         Optional<Club> clubOptional = clubRepository.findById(id);
-        return clubOptional.orElseGet(Club::new);
+        return clubOptional.orElse(null);
     }
 
     public List<Club> findByName(String name) {

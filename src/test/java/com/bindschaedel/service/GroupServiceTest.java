@@ -51,8 +51,9 @@ public class GroupServiceTest {
     @Test
     void canFindById() {
         ClubGroup savedGroup = groupService.save(group);
-        assertThat(groupService.findById(savedGroup.getId()).getId()).isNotNull();
-        assertThat(groupService.findById(9999L).getId()).isNull();
+        Long validId = savedGroup.getId();
+        assertThat(groupService.findById(validId)).isNotNull();
+        assertThat(groupService.findById(9999L)).isNull();
     }
 
     @Test

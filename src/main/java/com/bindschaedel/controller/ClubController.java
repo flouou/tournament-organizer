@@ -6,11 +6,13 @@ import com.bindschaedel.service.ClubService;
 import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class ClubController {
 
     private final ClubService  clubService;
@@ -36,5 +38,19 @@ public class ClubController {
     public ResponseEntity<Iterable<ClubGroup>> getGroupsForClub(@PathVariable(value = "clubId") String clubId) {
         Long id = Long.parseLong(clubId);
         return new ResponseEntity<>(groupService.findGroupByClubId(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/clubs")
+    public ResponseEntity<Club> createClub(@RequestBody Club club) {
+        Club savedClub = clubService.save(club);
+
+        HttpStatus status;
+        if (savedClub != null) {
+            status = HttpStatus.CREATED;
+        }
+        else {
+            status = HttpStatus.CONFLICT;
+        }
+        return new ResponseEntity<>(savedClub, status);
     }
 }

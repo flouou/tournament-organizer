@@ -51,4 +51,15 @@ public class GroupControllerTest {
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(Iterables.size(responseEntity.getBody())).isEqualTo(2);
     }
+
+    @Test
+    public void testCreateGroup() {
+        ClubGroup group = new ClubGroup();
+        group.setName("Test Group");
+        when(groupService.save(any(ClubGroup.class))).thenReturn(group);
+        ResponseEntity<ClubGroup> responseEntity = groupController.createGroup(group);
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
+        assertThat(responseEntity.getBody().getName()).isEqualTo(group.getName());
+    }
 }

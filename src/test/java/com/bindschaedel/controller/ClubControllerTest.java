@@ -63,4 +63,14 @@ public class ClubControllerTest {
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         assertThat(Iterables.size(responseEntity.getBody())).isEqualTo(1);
     }
+
+    @Test
+    public void testCreateClub() {
+        Club club = new Club("Test Club", "Test City");
+        when(clubService.save(any(Club.class))).thenReturn(club);
+        ResponseEntity<Club> responseEntity = clubController.createClub(club);
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
+        assertThat(responseEntity.getBody().getName()).isEqualTo(club.getName());
+    }
 }
