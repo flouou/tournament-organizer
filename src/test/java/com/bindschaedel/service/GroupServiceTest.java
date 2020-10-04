@@ -39,6 +39,7 @@ public class GroupServiceTest {
     @AfterEach
     public void clean() {
         groupService.removeAll();
+        clubService.removeAll();
     }
 
     @Test
