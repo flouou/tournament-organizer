@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Data
 @JsonIgnoreProperties({ "groups" })
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Classification extends BaseEntity {
 
     private String name;

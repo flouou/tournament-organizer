@@ -1,7 +1,9 @@
 package com.bindschaedel.controller;
 
+import com.bindschaedel.entity.Classification;
 import com.bindschaedel.entity.Club;
 import com.bindschaedel.entity.ClubGroup;
+import com.bindschaedel.service.ClassificationService;
 import com.bindschaedel.service.ClubService;
 import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GroupController {
 
-    private final GroupService groupService;
-    private final ClubService  clubService;
+    private final GroupService          groupService;
+    private final ClubService           clubService;
+    private final ClassificationService classificationService;
 
-    public GroupController(GroupService groupService, ClubService clubService) {
+    public GroupController(GroupService groupService, ClubService clubService, ClassificationService classificationService) {
         this.groupService = groupService;
         this.clubService = clubService;
+        this.classificationService = classificationService;
     }
 
     @GetMapping("/groups")
@@ -40,10 +44,28 @@ public class GroupController {
             Club clubObject = clubService.findById(group.getClub().getId());
             group.setClub(clubObject);
         }
-        
+
         ClubGroup savedGroup = groupService.save(group);
 
         HttpStatus status = savedGroup == null ? HttpStatus.CONFLICT : HttpStatus.CREATED;
         return new ResponseEntity<>(savedGroup, status);
+    }
+
+    @PostMapping("/groups/{groupId}/classification/{classificationId}")
+    public ResponseEntity<ClubGroup> updateGroupClassification(@PathVariable(value = "groupId") String groupId,
+                                                               @PathVariable(value = "classificationId") String classificationId) {
+        ClubGroup group = groupService.findById(Long.parseLong(groupId));
+        Classification classification = classificationService.findById(Long.parseLong(classificationId));
+        if (group == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        else if (classification == null) {
+            return new ResponseEntity<>(group, HttpStatus.CONFLICT);
+        }
+        else {
+            group.setClassification(classification);
+            ClubGroup savedGroup = groupService.save(group);
+            return new ResponseEntity<>(savedGroup, HttpStatus.OK);
+        }
     }
 }

@@ -86,4 +86,11 @@ public class GroupServiceTest {
         groupService.removeAll();
         assertThat(Iterables.size(groupService.getAll())).isZero();
     }
+
+    @Test
+    void canNotSaveNullAsGroup() {
+        ClubGroup savedGroup = groupService.save(null);
+        assertThat(Iterables.size(groupService.getAll())).isZero();
+        assertThat(savedGroup).isNull();
+    }
 }

@@ -31,4 +31,12 @@ public class GlobalExceptionHandler {
         }
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public Map<String,String> handleValidationExceptions(NumberFormatException ex) {
+        Map<String,String> errors = new HashMap<>();
+        errors.put("error", ex.getMessage());
+        return errors;
+    }
 }
