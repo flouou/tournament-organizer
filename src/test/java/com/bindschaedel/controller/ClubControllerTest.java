@@ -55,7 +55,6 @@ public class ClubControllerTest {
         Club club1 = new Club("Test Club", "Test City");
         ClubGroup group = new ClubGroup();
         group.setName("TestGroup");
-        group.setAge("5-8");
         group.setClub(club1);
         when(groupService.findGroupByClubId(any(Long.class))).thenReturn(Collections.singletonList(group));
         ResponseEntity<Iterable<ClubGroup>> responseEntity = clubController.getGroupsForClub("1");

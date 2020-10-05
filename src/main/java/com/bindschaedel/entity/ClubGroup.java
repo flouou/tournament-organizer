@@ -25,8 +25,14 @@ public class ClubGroup extends BaseEntity {
     @NotNull
     @NotBlank
     private String        name;
-    private String        age;
     private LocalDateTime time;
+
+    @ManyToOne(cascade =
+            { CascadeType.ALL }
+    )
+    @JoinColumn(name = "classification_id", referencedColumnName = "ID")
+    @Setter
+    private Classification classification;
 
     @ManyToOne(cascade =
             { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH }

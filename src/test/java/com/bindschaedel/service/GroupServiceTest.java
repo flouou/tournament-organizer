@@ -33,7 +33,6 @@ public class GroupServiceTest {
         group = new ClubGroup();
         group.setClub(savedClub);
         group.setName("Test Group");
-        group.setAge("2-5");
     }
 
     @AfterEach
@@ -71,7 +70,6 @@ public class GroupServiceTest {
         ClubGroup group = new ClubGroup();
         group.setName("Test Group");
         group.setClub(clubService.findByName("test").get(0));
-        group.setAge("5-8");
         Rating rating1 = new Rating(1);
         Rating rating2 = new Rating(5);
         Rating rating3 = new Rating(6);

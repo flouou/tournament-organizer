@@ -30,15 +30,22 @@ VALUES (2, 6, 1);
 INSERT IGNORE INTO rating (id, value, show_rating_id)
 VALUES (3, 8, 1);
 
+########## Classification TABLE #############
+INSERT IGNORE INTO classification (id, name, description)
+VALUES (1, 'Showdance 18+', 'Category showdance for ages 18 and above');
+
+INSERT IGNORE INTO classification (id, name, description)
+VALUES (2, 'Showdance 14-17+', 'Category showdance for ages 14 to 17 and above');
+
 ########## Club-Group TABLE ##############
-INSERT IGNORE INTO club_group (id, name, age, time, club_id)
-VALUES (1, 'Mini KaGeler', '2-4', null, 1);
+INSERT IGNORE INTO club_group (id, name, time, club_id, classification_id)
+VALUES (1, 'Mini KaGeler', null, 1, 1);
 
-INSERT IGNORE INTO club_group (id, name, age, time, club_id)
-VALUES (2, 'Kleine KaGeler', '5-8', null, 1);
+INSERT IGNORE INTO club_group (id, name, time, club_id, classification_id)
+VALUES (2, 'Kleine KaGeler', null, 1, 2);
 
-INSERT IGNORE INTO club_group (id, name, age, time, club_id)
-VALUES (3, 'Mini Kerscheblotzer', '2-4', null, 2);
+INSERT IGNORE INTO club_group (id, name, time, club_id, classification_id)
+VALUES (3, 'Mini Kerscheblotzer', null, 2, 1);
 
-INSERT IGNORE INTO club_group (id, name, age, time, club_id)
-VALUES (4, 'Kleine Kerscheblotzer', '5-8', null, 2);
+INSERT IGNORE INTO club_group (id, name, time, club_id, classification_id)
+VALUES (4, 'Kleine Kerscheblotzer', null, 2, 2);

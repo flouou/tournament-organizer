@@ -39,7 +39,6 @@ public class GroupControllerTest {
     public void testGetSingleGroup() {
         ClubGroup group = new ClubGroup();
         group.setName("Test Group");
-        group.setAge("5-8");
         when(groupService.findById(any(Long.class))).thenReturn(group);
         ResponseEntity<ClubGroup> responseEntity = groupController.getGroupById("1");
 
@@ -51,10 +50,8 @@ public class GroupControllerTest {
     public void testGetAllGroups() {
         ClubGroup group = new ClubGroup();
         group.setName("Test Group");
-        group.setAge("5-8");
         ClubGroup group2 = new ClubGroup();
         group2.setName("Second Test Group");
-        group2.setAge("5-8");
         Iterable<ClubGroup> groups = Arrays.asList(group, group2);
         when(groupService.getAll()).thenReturn(groups);
         ResponseEntity<Iterable<ClubGroup>> responseEntity = groupController.getAllGroups();
