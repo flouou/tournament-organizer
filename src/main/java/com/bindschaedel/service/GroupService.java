@@ -42,4 +42,8 @@ public class GroupService {
         groupRepository.deleteAll();
     }
 
+    public void remove(Long id) {
+        groupRepository.deleteById(id);
+    }
+
 }

@@ -27,20 +27,17 @@ public class ClubGroup extends BaseEntity {
     private String        name;
     private LocalDateTime time;
 
-    @ManyToOne(cascade =
-            { CascadeType.ALL }
-    )
+    @ManyToOne
     @JoinColumn(name = "classification_id", referencedColumnName = "ID")
     @Setter
     private Classification classification;
 
-    @ManyToOne(cascade =
-            { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH }
-    )
+    @ManyToOne
     @JoinColumn(name = "club_id", referencedColumnName = "ID")
+    @Setter
     private Club club;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "group", orphanRemoval = true)
     @Setter
     private ShowRating showRating = new ShowRating();
 

@@ -118,4 +118,22 @@ public class GroupControllerTest {
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(409);
         assertThat(responseEntity.getBody()).isEqualTo(group);
     }
+
+    @Test
+    public void testCanDeleteGroupById() {
+        when(groupService.findById(any(Long.class))).thenReturn(new ClubGroup());
+        ResponseEntity<Boolean> responseEntity = groupController.deleteGroup("1");
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
+        assertThat(responseEntity.getBody()).isEqualTo(Boolean.TRUE);
+    }
+
+    @Test
+    public void testCannotDeleteGroupByInvalidId() {
+        when(groupService.findById(any(Long.class))).thenReturn(null);
+        ResponseEntity<Boolean> responseEntity = groupController.deleteGroup("1");
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400);
+        assertThat(responseEntity.getBody()).isEqualTo(Boolean.FALSE);
+    }
 }

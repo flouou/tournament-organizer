@@ -94,4 +94,12 @@ public class ClubServiceTest {
         clubService.save(club);
         assertThat(clubService.findByName("verein").size()).isOne();
     }
+
+    @Test
+    void canDeleteClub() {
+        Club savedClub = clubService.save(club);
+        assertThat(clubService.count()).isOne();
+        clubService.remove(savedClub.getId());
+        assertThat(clubService.count()).isZero();
+    }
 }

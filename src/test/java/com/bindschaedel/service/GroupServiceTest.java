@@ -93,4 +93,12 @@ public class GroupServiceTest {
         assertThat(Iterables.size(groupService.getAll())).isZero();
         assertThat(savedGroup).isNull();
     }
+
+    @Test
+    void canDeleteClub() {
+        ClubGroup savedGroup = groupService.save(group);
+        assertThat(Iterables.size(groupService.getAll())).isOne();
+        groupService.remove(savedGroup.getId());
+        assertThat(Iterables.size(groupService.getAll())).isZero();
+    }
 }

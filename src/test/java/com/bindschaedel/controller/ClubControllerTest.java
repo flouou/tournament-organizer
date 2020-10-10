@@ -81,4 +81,22 @@ public class ClubControllerTest {
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(409);
         assertThat(responseEntity.getBody()).isNull();
     }
+
+    @Test
+    public void testCanDeleteClubById() {
+        when(clubService.findById(any(Long.class))).thenReturn(new Club());
+        ResponseEntity<Boolean> responseEntity = clubController.deleteClub("1");
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
+        assertThat(responseEntity.getBody()).isEqualTo(Boolean.TRUE);
+    }
+
+    @Test
+    public void testCannotDeleteClubByInvalidId() {
+        when(clubService.findById(any(Long.class))).thenReturn(null);
+        ResponseEntity<Boolean> responseEntity = clubController.deleteClub("1");
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400);
+        assertThat(responseEntity.getBody()).isEqualTo(Boolean.FALSE);
+    }
 }

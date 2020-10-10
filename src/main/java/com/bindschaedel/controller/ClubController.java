@@ -6,6 +6,7 @@ import com.bindschaedel.service.ClubService;
 import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,14 @@ public class ClubController {
             status = HttpStatus.CONFLICT;
         }
         return new ResponseEntity<>(savedClub, status);
+    }
+
+    @DeleteMapping("/clubs/{clubId}")
+    public ResponseEntity<Boolean> deleteClub(@PathVariable(value = "clubId") String clubId) {
+        if (clubService.findById(Long.parseLong(clubId)) != null) {
+            clubService.remove(Long.parseLong(clubId));
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
     }
 }

@@ -8,6 +8,7 @@ import com.bindschaedel.service.ClubService;
 import com.bindschaedel.service.GroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,5 +68,14 @@ public class GroupController {
             ClubGroup savedGroup = groupService.save(group);
             return new ResponseEntity<>(savedGroup, HttpStatus.OK);
         }
+    }
+
+    @DeleteMapping("/groups/{groupId}")
+    public ResponseEntity<Boolean> deleteGroup(@PathVariable(value = "groupId") String groupId) {
+        if (groupService.findById(Long.parseLong(groupId)) != null) {
+            groupService.remove(Long.parseLong(groupId));
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
     }
 }

@@ -25,14 +25,11 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class ShowRating extends BaseEntity implements Serializable {
 
-    @OneToOne(cascade =
-            { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH }
-    )
+    @OneToOne
     @JoinColumn(name = "group_id", referencedColumnName = "ID")
     private ClubGroup group;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "show_rating_id")
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "showRating", orphanRemoval = true)
     @Setter
     private List<Rating> ratings = new ArrayList<>();
 
