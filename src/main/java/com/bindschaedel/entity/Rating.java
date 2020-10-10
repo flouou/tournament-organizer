@@ -1,5 +1,6 @@
 package com.bindschaedel.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import javax.validation.constraints.DecimalMin;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
+@JsonIgnoreProperties({ "showRating" })
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Rating extends BaseEntity {
 
