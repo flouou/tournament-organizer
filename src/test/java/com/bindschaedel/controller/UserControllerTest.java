@@ -39,5 +39,11 @@ public class UserControllerTest {
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400);
         assertThat(responseEntity.getBody()).isNull();
+
+        user = new User(" ", "Password");
+        responseEntity = userController.signUp(user);
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(400);
+        assertThat(responseEntity.getBody()).isNull();
     }
 }

@@ -77,9 +77,18 @@ public class GroupControllerTest {
 
     @Test
     public void testCreateNullGroup() {
-        when(groupService.save(null)).thenReturn(null);
         ResponseEntity<ClubGroup> responseEntity = groupController.createGroup(null);
 
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(409);
+        assertThat(responseEntity.getBody()).isNull();
+    }
+
+    @Test
+    public void testCreateGroupNullClub() {
+        ClubGroup group = new ClubGroup();
+        group.setName("Test Group");
+        
+        ResponseEntity<ClubGroup> responseEntity = groupController.createGroup(null);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(409);
         assertThat(responseEntity.getBody()).isNull();
     }
