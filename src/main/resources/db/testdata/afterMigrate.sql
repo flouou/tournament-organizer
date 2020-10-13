@@ -1,6 +1,6 @@
 ########## USER TABLE ##############
-INSERT IGNORE INTO user (id, username, password, email, active)
-VALUES (1, 'user', '$2a$10$XUNDtM8r1v6pIjZFy8Ov7.qw4G9rj7DdqKcS36uVtQNWFosdnw/hu', 'user@user.user', TRUE);
+INSERT IGNORE INTO user (id, username, password)
+VALUES (1, 'test', '$2a$10$DHTv8zrcPbNQ0j2i2zCOWe9yZuVeeeLDs8ECsM1s7X./GAcQ4OAdi');
 
 ########## Club TABLE ##############
 INSERT IGNORE INTO club (id, name, city)

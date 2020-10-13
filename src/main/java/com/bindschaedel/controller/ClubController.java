@@ -54,7 +54,7 @@ public class ClubController {
         }
         return new ResponseEntity<>(savedClub, status);
     }
-
+    
     @DeleteMapping("/clubs/{clubId}")
     public ResponseEntity<Boolean> deleteClub(@PathVariable(value = "clubId") String clubId) {
         if (clubService.findById(Long.parseLong(clubId)) != null) {
