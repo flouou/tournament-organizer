@@ -21,6 +21,10 @@ public class ClassificationService {
         return classification.orElse(null);
     }
 
+    public Iterable<Classification> getAll() {
+        return classificationRepository.findAll();
+    }
+
     public Classification save(Classification classification) {
         if (classification != null) {
             return classificationRepository.save(classification);

@@ -2,6 +2,7 @@ package com.bindschaedel.service;
 
 import com.bindschaedel.annotations.IntegrationTest;
 import com.bindschaedel.entity.Classification;
+import com.google.common.collect.Iterables;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,15 @@ public class ClassificationServiceTest {
         Classification savedClassification = classificationService.save(classification);
         assertThat(classificationService.findById(savedClassification.getId())).isNotNull();
         assertThat(classificationService.findById(savedClassification.getId()).getName()).isEqualTo(classification.getName());
+    }
+
+    @Test
+    public void canFindAll() {
+        assertThat(Iterables.size(classificationService.getAll())).isZero();
+        Classification classification = new Classification();
+        classification.setName("Test Classification");
+        classification.setDescription("Test Description");
+        classificationService.save(classification);
+        assertThat(Iterables.size(classificationService.getAll())).isOne();
     }
 }

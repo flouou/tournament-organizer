@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -24,8 +24,8 @@ public class ClubGroup extends BaseEntity {
 
     @NotNull
     @NotBlank
-    private String        name;
-    private LocalDateTime time;
+    private String    name;
+    private LocalTime time;
 
     @ManyToOne
     @JoinColumn(name = "classification_id", referencedColumnName = "ID")
